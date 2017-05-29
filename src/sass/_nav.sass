@@ -1,0 +1,51 @@
+.nav-holder
+    width: 100%
+    height: 70px
+    top: 0
+    position: fixed
+    background-color: white
+    z-index: 1
+    .nav-content
+        max-width: 1000px
+        width: 80%
+        margin: 0 auto
+        height: inherit
+        @include responsive-big($big-break)
+        .upper-nav, .lower-nav
+            margin: 1% auto
+            height: 40%
+
+        .upper-nav div.un-cont,.lower-nav div.ln-cont
+            display: inline-block
+        .upper-nav
+            .logo-title
+                a
+                    font-weight: bold
+                    font-size: 1.2em
+            .search-btn
+                cursor: pointer
+                margin: 0 5%
+                &>*
+                    display: inline-block
+                .search-form-holder
+                    form#search-form
+                        //display: none
+                        position: absolute
+                        top: 17%
+                        margin-left: 1%
+                &:hover
+                    form#search-form
+                        display: inline-block
+            .profile-img-nav
+                position: relative
+                float: right
+        .lower-nav
+            text-align: center
+            font-size: .8em
+            color: #d9d9d9
+            ul
+                li
+                    display: inline-block
+                    padding: 0 1em
+                    &:hover
+                        color: black

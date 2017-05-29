@@ -1,0 +1,18 @@
+@mixin responsive-big($size)
+    @media screen and (max-width: $size)
+        margin-left: 1%
+        margin-right: 1%
+        width: 99%
+        min-width: 400px
+
+//@mixin responsive-small($size)
+    @media screen and (min-width: $size)
+        margin: 0 1%
+        width: 99%
+        min-width: 400px
+
+@keyframes blink
+    0%
+        opacity: 1
+    100%
+        opacity: 0

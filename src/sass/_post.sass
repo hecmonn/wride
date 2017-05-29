@@ -1,0 +1,51 @@
+.post-holder
+    width: 100%
+    display: flex
+    border-bottom: 1px solid $grey
+    &:hover
+        cursor: pointer
+        background-color: $bg-color
+    .post-right,.post-left
+        display: inline-block
+        padding: .5em
+    .post-right
+        width: 10%
+    .post-left
+        width: 80%
+        .post-info
+            height: auto
+            width: 100%
+            .name-post
+                color: black
+                font-weight: bold
+            .username-post, .name-post
+                font-size: 1em
+                &:hover
+                    border-bottom: 1px solid black
+            &>*
+                padding-right: .5em
+                display: inline-block
+    .post-input
+        padding: .5em 0
+        .img-post
+            max-width: 100%
+            height: auto
+            margin: auto
+        .text-post
+            font-weight: lighter
+    .cta-holder
+        width: 100%
+        .cta-btns
+            position: relative
+            float: right
+            .cta-btn,.post-opt
+                padding: 0 .5em
+                cursor: pointer
+                transition: font-size .1s
+                &:hover
+                    color: grey
+                    font-weight: bold
+                    font-size: 1.1em
+            .ctaActive
+                color: grey
+                font-weight: bold

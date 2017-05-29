@@ -1,0 +1,93 @@
+.profile-holder
+    width: 100%
+    position: relative
+    margin: 0 auto
+    min-width: 735px
+    .profile-header
+        .cover-holder
+            width: 100%
+            height: 270px
+            .cover
+                width: inherit
+                height: 300px
+                background-position: center
+                background-repeat: no-repeat
+                background-size: 100% 100%
+                background-attachment: fixed
+                position: absolute
+                margin-top: -15px
+            .avatar-img-holder
+                border-radius: 5px
+                border: 3px solid $bg-color
+                position: absolute
+                width: 150px
+                height: 150px
+                bottom: -15%
+                left: 25px
+        .stats-holder
+            margin-top: 1em
+            position: relative
+            left: 35%
+            height: auto
+            min-width: 615px
+            .active-stat
+                border-bottom: 5px solid $grey
+            .single-stat
+                height: auto
+                margin: auto
+                padding: 0.01em 2em
+                p,h3
+                    margin: .5em
+                &:hover
+                    border-bottom: 5px solid $grey
+            &>*
+                display: inline-block
+    .profile-content
+        width: 100%
+        position: relative
+        display: flex
+        &>*
+            display: inline-block
+        .info-content
+            width: 30%
+            .user-info
+                margin-left: 25px
+                .username-info
+                    font-size: .95em
+                    color: rgba(91, 91, 91, 0.92)
+        .profile-feed
+            margin-left: 5%
+            width: 65%
+
+        .wtf-holder,.trends-holder
+            background-color: white
+            margin-bottom: 10px
+            border: 1px solid $grey
+            .header
+                h3
+                    padding: 0 .5em
+            .content
+                margin: 0 5%
+        .trends-content
+            margin: 0 5%
+            .trend-link
+                color: $sgrey
+                font-weight: bold
+                &:hover
+                    border-bottom: 1px solid $sgrey
+            .trend-info
+                margin: 0
+        .wtf-usr-holder
+            padding: 1em 0
+            width: 97%
+            margin: auto
+            vertical-align: middle
+            .wtf-info
+                &>*
+                    font-size: .8em
+                    padding: 0 .1em
+                    &:hover
+                        border-bottom: 1px solid black
+            &>*
+                display: inline-block
+                padding-right: .3em

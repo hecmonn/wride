@@ -1,0 +1,14 @@
+
+$grey: rgba(154, 154, 154, .55);
+$sgrey:  rgba(66, 66, 66, 0.9);
+$bg-color : #eee;
+$light-black: #202020;
+$big-break: 500px;
+@import 'mixins';
+@import 'general';
+
+@import 'nav';
+@import 'animations';
+@import 'home';
+@import 'post';
+@import 'profile';

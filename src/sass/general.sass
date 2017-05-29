@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto')
+@import 'mixins'
+
+html,body
+    width: 100%
+    height: 100%
+    padding: 0
+    margin: 0
+    font-family: 'Roboto', Verdana, Arial
+    background-color: $bg-color
+a
+    text-decoration: none
+    color: inherit
+    &:hover
+        text-decoration: none
+a.active
+    color: black
+hr
+    border-top: 1px solid #8c8b8b
+    opacity: .5
+ul
+    list-style: none
+    padding: 0
+.btn
+    background-color: white
+    border: 1px solid $grey
+    color: $light-black
+    cursor: pointer
+    border-radius: 3px
+    &:hover
+        background-color: #d9d9d9
+.btn-xs
+    width: 30px
+    height: 30px
+.btn-md
+    width: 65px
+    height: 30px
+.btn-lg
+    width: 90px
+    height: 20px
+.btn-img-md
+    background-size: 30px 65px
+.global-holder
+    max-width: 1000px
+    margin: 0 auto
+    margin-top: 85px
+    width: 80%
+    @include responsive-big($big-break)
+.icon
+    width: 20px
+    height: 20px
+    cursor: pointer
+    background-position: center
+    background-size: contain
+    background-repeat: no-repeat
+.search-icon
+    background-image: url("/images/search-icon.png")
+
+.camera-icon
+    background-image: url("/images/camera-icon.png")
+input[type="text"]
+    border: 0
+    &:focus
+        outline: none
+.profile-img
+    cursor: pointer
+    border-radius: 5px
+    margin: auto
+img.profile-img-sm
+    width: 30px
+    height: 30px
+
+img.profile-img-md
+    width: 50px
+    height: 50px
+
+img.profile-img-lg
+    width: 150px
+    height: 150px
+
+.text-muted
+    color: $grey
+    font-size: .8em
+.dropdown-holder
+    display: inline-block
+    position: relative
+    .dropdown-content
+        font-size: .8em
+        background-color: white
+        display: none
+        border: 1px solid $grey
+        border-radius: 1px
+        li
+            padding: .5em
+            a
+                text-decoration: none
+                &:hover
+                    color: $grey
+.profile-img-nav:hover
+    .dropdown-content
+        display: block
+        position: absolute
+.light-shadow
+    box-shadow: 0 1.5px 5px 0 rgba(0, 0, 0, 0.19)
+
+
+[contentEditable=true]:empty:before
+    content: attr(placeholder)
+    display: block
+    color: grey
+    font-size: .9em
+    cursor: text
