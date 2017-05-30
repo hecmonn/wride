@@ -17,7 +17,7 @@ class Profile extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            name: this.props.users===0?'':this.props.users.first_name,
+            name: '',
             username: 'this.props.users.username',
             cover:'http://t.wallpaperweb.org/wallpaper/nature/1600x1200/Mazatlan_Sunset_Mexico.jpg',
             profile:'http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg',

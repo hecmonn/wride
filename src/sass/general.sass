@@ -15,6 +15,16 @@ a
         text-decoration: none
 a.active
     color: black
+
+.form-input
+    border-left: 0
+    border-right: 0
+    border-top: 0
+    background-color: inherit
+    border-bottom: 1px solid black
+    font-size: 1em
+    &:focus
+        outline: none
 hr
     border-top: 1px solid #8c8b8b
     opacity: .5
@@ -36,8 +46,8 @@ ul
     width: 65px
     height: 30px
 .btn-lg
-    width: 90px
-    height: 20px
+    width: 180px
+    height: 40px
 .btn-img-md
     background-size: 30px 65px
 .global-holder
@@ -58,10 +68,11 @@ ul
 
 .camera-icon
     background-image: url("/images/camera-icon.png")
-input[type="text"]
-    border: 0
-    &:focus
-        outline: none
+
+.blink-caret
+    color: #2E3D48
+    font-weight: 100
+    animation: blink .8s infinite
 .profile-img
     cursor: pointer
     border-radius: 5px

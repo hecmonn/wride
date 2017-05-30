@@ -8,10 +8,10 @@ class Trends extends Component {
                     <h3>Trends</h3><hr/>
                 </div>
                 <div className="trends-content">
-                    <Link className="trend-link" to="/asd">Something</Link>
+                    <Link className="trend-link" to="/login">Something</Link>
                     <p className="trend-info text-muted">85 K Talking about this</p><br/>
 
-                    <Link className="trend-link" to="/login">Something</Link>
+                    <Link className="trend-link" to="/u/login">Something</Link>
                     <p className="trend-info text-muted">85 K Talking about this</p><br/>
 
 

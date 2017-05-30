@@ -47,9 +47,9 @@ class Post extends React.Component {
                     <div className="post-left">
                         <div className="post-content">
                             <div className="post-info">
-                                <Link to={{pathname:this.state.username, query:{username: this.state.username}}}  className="name-post">{this.state.name}</Link>
-                                <Link to={{pathname:this.state.username, query:{username: this.state.username}}} className="username-post">{this.state.username}</Link>
-                                <Link to={{pathname:this.state.username, query:{username: this.state.username}}} className="text-muted">{this.state.created_date}</Link>
+                                <Link to={{pathname:`/u/${this.state.username}`, query:{username: this.state.username}}}  className="name-post">{this.state.name}</Link>
+                                <Link to={{pathname:`/u/${this.state.username}`, query:{username: this.state.username}}} className="username-post">{this.state.username}</Link>
+                                <Link to={{pathname:`/u/${this.state.username}`, query:{username: this.state.username}}} className="text-muted">{this.state.created_date}</Link>
                             </div>
                             <div className="post-input">
                                     <img src={this.state.media} alt="post-image" className="img-post" />

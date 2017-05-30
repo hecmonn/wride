@@ -6,7 +6,7 @@ class Login extends React.Component {
         return(
             <div className="login-holder">
                 <div className="login-logo-holder">
-                    <h1>Wride.</h1><span className="blink-caret">|</span>
+                    <span className="logo-front">Wride.</span><span className="blink-caret">|</span>
                 </div>
                 <div className="form-holder">
                     <LoginForm />

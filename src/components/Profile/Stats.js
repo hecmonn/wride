@@ -16,7 +16,7 @@ class Stats extends React.Component {
         return(
             <div className="stats-holder">
                 <div className="posts-stat">
-                    <Link to={`/${this.state.username}`} className="stat-link">
+                    <Link to={`/u/${this.state.username}`} className="stat-link">
                         <div className="single-stat active-stat">
                             <h3 className="stat-title">Entries</h3>
                             <p className="stat-number">{this.state.posts}</p>
@@ -24,7 +24,7 @@ class Stats extends React.Component {
                     </Link>
                 </div>
                 <div className="following-stat">
-                    <Link to={`/${this.state.username}/following`} className="stat-link">
+                    <Link to={`/u/${this.state.username}/following`} className="stat-link">
                         <div className="single-stat">
                             <h3 className="stat-title">Following</h3>
                             <p className="stat-number">{this.state.following}</p>
@@ -32,7 +32,7 @@ class Stats extends React.Component {
                     </Link>
                 </div>
                 <div className="followers-stat">
-                    <Link to={`/${this.state.username}/followers`} className="stat-link">
+                    <Link to={`/u/${this.state.username}/followers`} className="stat-link">
                         <div className="single-stat">
                             <h3 className="stat-title">Followers</h3>
                             <p className="stat-number">{this.state.followers}</p>
@@ -40,7 +40,7 @@ class Stats extends React.Component {
                     </Link>
                 </div>
                 <div className="hearts-stat">
-                    <Link to={`/${this.state.username}/hearts`} className="stat-link">
+                    <Link to={`/u/${this.state.username}/hearts`} className="stat-link">
                         <div className="single-stat">
                             <h3 className="stat-title">Hearts</h3>
                             <p className="stat-number">{this.state.hearts}</p>
