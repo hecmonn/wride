@@ -40,7 +40,7 @@ router.get('/get-user-posts/:uid',(req,res)=>{
 router.get('/get-user/:username',(req,res)=>{
     let username=req.params.username;
     let sql=`MATCH (u:User) WHERE u.username="${username}" RETURN u.username as username, u.first_name as first_name, u.last_name as last_name, u.bod as bod, u.bio as bio, u.created_date as created_date, u.profile as profile, u.cover as cover`;
-    console.log(sql);
     let user=gquery(sql,res);
 });
+router.post(' ')
 export default router;
