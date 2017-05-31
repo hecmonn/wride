@@ -82,5 +82,5 @@ LoginForm.propTypes = {
 LoginForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 }*/
-export default LoginForm;
-//export default connect(null, { login })(LoginForm);
+//export default LoginForm;
+export default connect(null,{login})(LoginForm);

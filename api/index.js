@@ -43,4 +43,6 @@ router.get('/get-user/:username',(req,res)=>{
     console.log(sql);
     let user=gquery(sql,res);
 });
+
+
 export default router;

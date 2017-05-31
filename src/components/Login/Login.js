@@ -8,7 +8,7 @@ class Login extends React.Component {
                 <div className="login-logo-holder">
                     <span className="logo-front">Wride.</span><span className="blink-caret">|</span>
                 </div>
-                <div className="form-holder">
+                <div className="form-group">
                     <LoginForm />
                 </div>
             </div>

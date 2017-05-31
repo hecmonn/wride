@@ -5,11 +5,11 @@ export default function validateInput(data) {
   let errors = {};
 
   if (Validator.isEmpty(data.identifier)) {
-    errors.identifier = 'This field is required';
+    errors.identifier = 'Don\'t be shy, tell us your username!';
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'This field is required';
+    errors.password = 'Seriously?';
   }
 
   return {
