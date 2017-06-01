@@ -12,7 +12,7 @@ const TextFieldGroup = ({ field, value, label, error, type, onChange, checkUserE
         name={field}
         placeholder={placeholder}
         className="form-input login-input"
-      />
+      /><br/><br/>
         <div>
           {error && <span className="help-block">{error}</span>}
         </div>

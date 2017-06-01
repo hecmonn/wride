@@ -2,7 +2,7 @@ import React from 'react';
 import TextFieldGroup from '../../helpers/TextFieldGroup';
 import validateInput from '../../helpers/helpers';
 import { connect } from 'react-redux';
-import { login } from '../../actions/login';
+import { login } from '../../actions/authActions';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -45,7 +45,6 @@ class LoginForm extends React.Component {
 
   render() {
     const { errors, identifier, password, isLoading } = this.state;
-
     return (
       <form onSubmit={this.onSubmit}>
         { errors.form && <div className="alert alert-danger">{errors.form}</div> }
@@ -74,13 +73,13 @@ class LoginForm extends React.Component {
     );
   }
 }
-/*
+
 LoginForm.propTypes = {
   login: React.PropTypes.func.isRequired
 }
-
+/*
 LoginForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 }*/
-export default LoginForm;
-//export default connect(null, { login })(LoginForm);
+//export default LoginForm;
+export default connect(null, { login })(LoginForm);
