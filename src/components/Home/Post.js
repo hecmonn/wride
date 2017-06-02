@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import {Link} from 'react-router-dom';
 import classnames from 'classnames';
-import datef from 'dateformat';
 class Post extends React.Component {
     constructor(props){
         super(props);
@@ -33,11 +32,12 @@ class Post extends React.Component {
     handleShare(){
         //
     }
-    componentWillMount() {
+    showModal(){
+
     }
     render () {
         return(
-                <div className="post-holder">
+                <div className="post-holder" onClick={this.showModal}>
                     <div className="post-right">
                         <div className="user-img-holder">
                             <img src={this.state.profile} alt="usr-img" className="profile-img profile-img-md" />

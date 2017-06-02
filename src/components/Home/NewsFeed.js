@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import Post from './Post';
 //postsList
 
-//all posts
 
 export default function NewsFeed({posts}) {
     const empty=(

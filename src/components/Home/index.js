@@ -8,6 +8,8 @@ import Trends from './Trends';
 import WriteBox from './WriteBox';
 import NewsFeed from './NewsFeed';
 import Nav from '../Nav';
+import Modal from '../Globals/Modal';
+
 class Home extends Component {
     componentDidMount() {
         this.props.fetchHomePosts();

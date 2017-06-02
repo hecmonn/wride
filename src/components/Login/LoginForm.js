@@ -68,7 +68,8 @@ class LoginForm extends React.Component {
           className="login-input"
         />
 
-        <button className="btn btn-lg login-btn" disabled={isLoading}>Login</button>
+        <button className="btn btn-lg login-btn" disabled={isLoading}>Login</button><br/>
+        <button className="btn btn-lg login-btn">Register </button>
       </form>
     );
   }
