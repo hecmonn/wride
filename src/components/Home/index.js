@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchHomePosts} from '../../actions/posts.js';
-
 //components
 import WTF from './WTF';
 import Trends from './Trends';
@@ -31,6 +30,8 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+
+                <Modal name='hecmonn' />
             </div>
         )
     }
