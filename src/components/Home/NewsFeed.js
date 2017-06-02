@@ -3,9 +3,11 @@ import {connect} from 'react-redux';
 import Post from './Post';
 //postsList
 
-
-export default function NewsFeed({posts}) {
-    const empty=(
+class NewsFeed extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    empty=(
         <div>
             <div className="empty-posts">
                 <h3>There are no posts, yet.</h3>
@@ -13,23 +15,32 @@ export default function NewsFeed({posts}) {
             <hr/>
         </div>
     );
-    const postsList=(
+    postsList=(
         <div>
-            {posts.map(post=><Post post={post} key={post.pid.low} />)}
+            {this.props.posts.map(post=>console.log(post))}//<Post post={post} key={post.pid.low} onClick={handleClick}/>)}
         </div>
     )
-    return(
-        <div className="newsfeed">
-            <div className="all-posts">
-                {posts.length===0?empty:postsList}
+    handleClick=(e)=>{
+        e.preventDefault();
+        console.log('modal');
+    }
+
+    render () {
+        return(
+            <div className="newsfeed">
+                <div className="all-posts">
+                    {this.props.posts.length===0?this.empty:this.postsList}
+                </div>
+                <div className="wride-loader">
+                    <span className="logo">Wride.</span><span className="blink-caret">|</span>
+                </div>
             </div>
-            <div className="wride-loader">
-                <span className="logo">Wride.</span><span className="blink-caret">|</span>
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
 NewsFeed.propTypes={
     posts: React.PropTypes.array.isRequired
 }
+
+export default NewsFeed;

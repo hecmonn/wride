@@ -1,20 +1,7 @@
-import React, {Component} from 'react';
-import classnames from 'classnames';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-class Modal extends Component{
-    constructor(){
-        super();
-        this.state={
-            hideModal:false
-        }
-    }
-    componentDidMount() {
-        document.addEventListener('keydown',e=>{
+import React, { PropTypes } from 'react'
 
-        })
-    }
-    render(){
+class PostModal extends React.Component {
+    render () {
         return(
             <div className={classnames('modal-holder', {hidden: this.state.hideModal})}>
                 <div className="modal-content-holder">
@@ -34,16 +21,14 @@ class Modal extends Component{
                         <div className="modal-body">
                             <h1>This is the modal body</h1>
                         </div>
-
                         <div className="modal-footer">
 
                         </div>
                     </div>
-
                 </div>
             </div>
         )
     }
 }
 
-export default Modal;
+export default PostModal;
