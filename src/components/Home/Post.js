@@ -33,7 +33,6 @@ class Post extends React.Component {
         //
     }
     showModal(){
-
     }
     render () {
         return(

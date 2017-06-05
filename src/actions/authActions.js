@@ -6,7 +6,6 @@ export function authLogin(cred){
 }
 
 export function login(cred){
-    console.log('here act')
     const {identifier,password}=cred;
     return dispatch=>{
         fetch('/api/auth', {

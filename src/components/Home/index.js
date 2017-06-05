@@ -25,7 +25,7 @@ class Home extends Component {
                         </div>
                         <div className="right-pane">
                             <WriteBox/>
-
+                            
                             <NewsFeed posts={this.props.posts}/>
                         </div>
                     </div>
