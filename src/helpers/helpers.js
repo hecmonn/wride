@@ -1,5 +1,15 @@
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
+import axios from 'axios';
+
+export function setAuthToken(token){
+    if(token){
+        axios.defaults.headers.common['Auth'] = `Bearer ${token}`;
+    } else {
+        console.log('no token');
+        delete axios.defaults.headers.common['Auth'];
+    }
+}
 
 export default function validateInput(data) {
   let errors = {};

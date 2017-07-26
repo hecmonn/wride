@@ -8,7 +8,9 @@ import thunk from 'redux-thunk';
 import {rootReducer} from './reducers';
 //Components
 import App from './components/App';
+import {setAuthToken} from './helpers/helpers';
 
+setAuthToken(localStorage.token);
 
 const store=createStore(
     rootReducer,

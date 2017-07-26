@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchHomePosts} from '../../actions/posts.js';
+import {Redirect} from 'react-router-dom';
 //components
 import WTF from './WTF';
 import Trends from './Trends';
@@ -10,29 +11,41 @@ import Nav from '../Nav';
 import Modal from '../Globals/Modal';
 
 class Home extends Component {
+    constructor(){
+        super();
+        this.state={
+            redirect: false
+        }
+    }
+    componentWillMount() {
+        if(!!this.props.auth.access) this.setState({redirect:true});
+    }
     componentDidMount() {
         this.props.fetchHomePosts();
     }
     render(){
+        const {redirect}=this.state;
         return(
-            <div>
-                <Nav />
-                <div className="global-holder">
-                    <div className="home-holder">
-                        <div className="left-pane">
-                            <WTF/>
-                            <Trends/>
-                        </div>
-                        <div className="right-pane">
-                            <WriteBox/>
-                            
-                            <NewsFeed posts={this.props.posts}/>
+            redirect?
+                <div>
+                    <Nav />
+                    <div className="global-holder">
+                        <div className="home-holder">
+                            <div className="left-pane">
+                                <WTF/>
+                                <Trends/>
+                            </div>
+                            <div className="right-pane">
+                                <WriteBox/>
+
+                                <NewsFeed posts={this.props.posts}/>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <Modal name='hecmonn' />
-            </div>
+                    <Modal name='hecmonn' />
+                </div>
+            : <Redirect to='/login' />
         )
     }
 }
@@ -43,7 +56,8 @@ Home.propTypes={
 
 let mapStateToProps=state=>{
     return {
-        posts: state.posts
+        posts: state.posts,
+        auth: state.auth
     }
 }
 export default connect(mapStateToProps,{fetchHomePosts})(Home);

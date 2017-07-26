@@ -3,7 +3,7 @@ import TextFieldGroup from '../../helpers/TextFieldGroup';
 import validateInput from '../../helpers/helpers';
 import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
-
+import {Link} from 'react-router-dom';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +69,7 @@ class LoginForm extends React.Component {
         />
 
         <button className="btn btn-lg login-btn" disabled={isLoading}>Login</button><br/>
-        <button className="btn btn-lg login-btn">Register </button>
+        <Link to='/register' className="btn btn-lg login-btn">Register </Link>
       </form>
     );
   }
