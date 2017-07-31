@@ -3,9 +3,8 @@ import {Route,render} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchUserPosts} from '../../actions/posts';
 import {getUser} from '../../actions/users';
-
+import {prettyName} from '../../helpers/helpers';
 import Nav from '../Nav';
-
 import Cover from './Cover';
 import Stats from './Stats';
 import NewsFeed from '../Home/NewsFeed';
@@ -17,11 +16,11 @@ class Profile extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            name: '',
-            username: 'this.props.users.username',
+            /*name: '',
+            username: '',
+            bio:'A fool who plays it cool', */
             cover:'http://t.wallpaperweb.org/wallpaper/nature/1600x1200/Mazatlan_Sunset_Mexico.jpg',
             profile:'http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg',
-            bio:'A fool who plays it cool',
             posts:[],
             posts_stat:500,
             followers_stat:100,
@@ -29,16 +28,35 @@ class Profile extends React.Component {
             hearts_stat:3,
             private: false,
             own_profile:false,
-            following:false
+            following:false,
+            isLoading:false
         }
     }
 
-    componentDidMount() {
-        const userParam=this.props.match.params.username;
+    componentWillMount() {
+        this.setState({isLoading:true});
+        this.props.getUser(this.props.match.params.username)
+        .then(r=>{
+            console.log(r.user[0])
+            this.setState({
+                username: r.user[0].username,
+                name: prettyName(r.user[0].fname,r.user[0].lname),
+                bio: 'A fool who plays it cool',//r.user[0].bio,
+                isLoading:false,
+                cover:'http://t.wallpaperweb.org/wallpaper/nature/1600x1200/Mazatlan_Sunset_Mexico.jpg',
+                profile:'http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg',
+                posts_stat:500,
+                followers_stat:100,
+                following_stat: 212,
+                hearts_stat:3,
+                private: false
+            })
+        });
         this.props.fetchUserPosts();
-        this.props.getUser(userParam);
+        //const {fname,lname,username,bod,bio}=this.props.user
     }
     render () {
+        const {name,username,bod,bio}=this.state;
         return(
             <div>
                 <Nav />
@@ -51,16 +69,16 @@ class Profile extends React.Component {
                         <div className="profile-content">
                             <div className="info-content">
                                 <div className="user-info">
-                                    <h3>{this.state.name}</h3>
-                                    <p className="username-info">{this.state.username}</p>
-                                    <p className="bio-info">{this.state.bio}</p>
+                                    <h3>{name}</h3>
+                                    <p className="username-info">{username}</p>
+                                    {bio && <p className="bio-info">{this.state.bio}</p>}
                                 </div>
                                 <Trends/>
                                 <WTF />
                             </div>
                             <div className="profile-feed">
-                                <Route path="/:username/following" component={Following} />
-                                <Route exact path="/:username" posts={this.props.posts} render={(props)=>{
+                                <Route exact path="/u/:username/following" component={Following} />
+                                <Route exact path="/u/:username" posts={this.props.posts} render={(props)=>{
                                         return(
                                             <div>
                                                 <NewsFeed {...this.props} />
@@ -82,10 +100,11 @@ Profile.propTypes={
     getUser: React.PropTypes.func.isRequired,
 }
 let mapStateToProps=state=>{
-    console.log(state);
     return {
+        user: state.users[0],
         posts: state.posts,
-        users: state.users[0]
+        auth:state.auth
     }
 }
+
 export default connect(mapStateToProps,{fetchUserPosts,getUser})(Profile);

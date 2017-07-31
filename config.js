@@ -8,3 +8,7 @@ export const graphDb={
     user: 'neo4j',
     password: 'admin'
 }
+
+export const tokenSecret={
+    jwtSecret:'averyseciresecretforjsonwebtoken'
+}

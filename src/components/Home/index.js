@@ -42,8 +42,6 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
-
-                    <Modal name='hecmonn' />
                 </div>
             : <Redirect to='/login' />
         )

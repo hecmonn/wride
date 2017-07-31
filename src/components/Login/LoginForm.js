@@ -1,9 +1,11 @@
 import React from 'react';
 import TextFieldGroup from '../../helpers/TextFieldGroup';
-import validateInput from '../../helpers/helpers';
+import {validateInput,setAuthToken} from '../../helpers/helpers';
 import { connect } from 'react-redux';
-import { login } from '../../actions/authActions';
-import {Link} from 'react-router-dom';
+import { login,validateAuth } from '../../actions/authActions';
+import {Link, Redirect} from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,8 @@ class LoginForm extends React.Component {
       identifier: '',
       password: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
+      redirect: false
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -19,7 +22,8 @@ class LoginForm extends React.Component {
   }
 
   isValid() {
-    const { errors, isValid } = validateInput(this.state);
+    const {identifier,password}=this.state;
+    const { errors, isValid } = validateInput({identifier,password});
 
     if (!isValid) {
       this.setState({ errors });
@@ -32,9 +36,22 @@ class LoginForm extends React.Component {
     e.preventDefault();
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
-      this.props.login(this.state).then(
-        (res) => this.context.router.push('/'),
-        (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+      this.props.login(this.state)
+      .then(
+          r=>{
+              if(r.data.access){
+                  const token=r.data.token;
+                  localStorage.setItem('token',token);
+                  setAuthToken(token);
+                  let decodedToken=jwtDecode(token);
+                  this.props.validateAuth(decodedToken);
+                  this.setState({isLoading:false,redirect:true});
+              }
+              else {
+                  const {errors}=r.data;
+                  this.setState({errors,isLoading:false})
+              }
+          }
       );
     }
   }
@@ -44,33 +61,38 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { errors, identifier, password, isLoading } = this.state;
+    const { errors, identifier, password, isLoading, redirect} = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
-        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
+        !redirect?
+            <div>
+              <form onSubmit={this.onSubmit}>
 
-        <TextFieldGroup
-          field="identifier"
-          value={identifier}
-          error={errors.identifier}
-          onChange={this.onChange}
-          className="login-input"
-          placeholder="Username"
-        />
+                <TextFieldGroup
+                  field="identifier"
+                  value={identifier}
+                  error={errors.identifier}
+                  onChange={this.onChange}
+                  className="login-input"
+                  placeholder="Username"
+                />
 
-        <TextFieldGroup
-          field="password"
-          value={password}
-          error={errors.password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-          className="login-input"
-        />
-
-        <button className="btn btn-lg login-btn" disabled={isLoading}>Login</button><br/>
-        <Link to='/register' className="btn btn-lg login-btn">Register </Link>
-      </form>
+                <TextFieldGroup
+                  field="password"
+                  value={password}
+                  error={errors.password}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Password"
+                  className="login-input"
+                />
+                { errors.form && <div className="alert alert-danger">{errors.form}</div> }
+                {isLoading && <span>loading...<br/></span>}
+                <button className="btn btn-lg login-btn" disabled={isLoading}>Login</button><br/>
+                <Link to='/register'><button className="btn btn-lg login-btn">Register</button></Link>
+             </form>
+            </div>
+        :
+            <Redirect to='/' />
     );
   }
 }
@@ -83,4 +105,4 @@ LoginForm.contextTypes = {
   router: React.PropTypes.object.isRequired
 }*/
 //export default LoginForm;
-export default connect(null, { login })(LoginForm);
+export default connect(null, { login,validateAuth })(LoginForm);

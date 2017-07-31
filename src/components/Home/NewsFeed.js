@@ -17,6 +17,7 @@ class NewsFeed extends React.Component {
     );
     postsList=({posts})=>(
         <div>
+            {console.log(posts)}
             {this.props.posts.map(post=><Post post={post} key={post.pid.low} />)}
         </div>
     )

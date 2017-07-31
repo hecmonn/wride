@@ -1,14 +1,14 @@
-export function authLogin(cred){
+export function authLogin(data){
     return {
-        type: "AUTH",
-        cred
+        type: "SET_LOGIN",
+        data
     }
 }
 
 export function login(cred){
     const {identifier,password}=cred;
     return dispatch=>{
-        fetch('/api/auth', {
+        return fetch('/api/auth', {
             method:'post',
             body:JSON.stringify({
                 identifier,
@@ -20,6 +20,18 @@ export function login(cred){
         })
         .then(res=>res.json())
         .then(data=>dispatch(authLogin(data)))
-        .catch(err=>{err})
+    }
+}
+
+export function validateAuth(data){
+    return dispatch=>{
+        dispatch(setAuth(data));
+    }
+}
+
+export function setAuth(data){
+    return {
+        type:'SET_AUTH',
+        data
     }
 }

@@ -10,8 +10,7 @@ if(localStorage.token){
     }
 } else {
     initialState={
-        isAuthenticated: false,
-        user: {}
+        access: false,
     }
 }
 
@@ -21,6 +20,7 @@ let auth=(state=[],action={})=>{
             return action.data
         case "SET_AUTH":
             return {
+                access:true,
                 ...state,
                 ...action.data
             }

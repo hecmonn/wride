@@ -11,7 +11,7 @@ export function setAuthToken(token){
     }
 }
 
-export default function validateInput(data) {
+export function validateInput(data) {
   let errors = {};
 
   if (Validator.isEmpty(data.identifier)) {
@@ -26,4 +26,18 @@ export default function validateInput(data) {
     errors,
     isValid: isEmpty(errors)
   };
+}
+
+export function prettyName(fname,lname){
+    let capFname=fname.charAt(0).toUpperCase() + fname.slice(1);
+    let capLname=lname.charAt(0).toUpperCase() + lname.slice(1);
+    let fullName=`${capFname} ${capLname}`;
+    return fullName;
+}
+
+export function initials (fname,lname){
+    let capFname=fname.charAt(0).toUpperCase();
+    let capLname=lname.charAt(0).toUpperCase();
+    let initials=`${capFname}${capLname}`;
+    return initials
 }

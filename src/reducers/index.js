@@ -4,6 +4,6 @@ import users from './users';
 import auth from './auth';
 export const rootReducer = combineReducers({
     posts,
-    users,
-    auth
+    auth,
+    users
 });

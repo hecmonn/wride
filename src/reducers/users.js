@@ -1,7 +1,7 @@
 let users = (state=[],action={})=>{
     switch(action.type){
         case "SET_USER":
-            return action.user
+            return action.user;
         default: return state;
     }
 }

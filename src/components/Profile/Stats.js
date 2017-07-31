@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import {Link} from 'react-router-dom';
-
+import cn from 'classnames';
 class Stats extends React.Component {
     constructor(props){
         super(props);
@@ -9,39 +9,46 @@ class Stats extends React.Component {
             followers:this.props.stats.followers_stat,
             posts:this.props.stats.posts_stat,
             hearts:this.props.stats.hearts_stat,
-            username:this.props.stats.username
+            entries_active:true,
+            following_active:false,
+            followers_active:false,
+            hearts_active: false
         }
     }
+    handleActive=e=>{
+        console.log(e.target.name);
+    }
     render () {
+        const {username}=this.props.stats;
         return(
             <div className="stats-holder">
-                <div className="posts-stat">
-                    <Link to={`/u/${this.state.username}`} className="stat-link">
-                        <div className="single-stat active-stat">
-                            <h3 className="stat-title">Entries</h3>
-                            <p className="stat-number">{this.state.posts}</p>
+                <div name='entries' onClick={this.handleActive} className="posts-stat">
+                    <Link to={`/u/${username}`} className="stat-link">
+                        <div name='entries' className={cn("single-stat", {activeStat:this.state.entries_active})}>
+                            <h3 name='entries' className="stat-title">Entries</h3>
+                            <p name='entries' className="stat-number">{this.state.posts}</p>
                         </div>
                     </Link>
                 </div>
-                <div className="following-stat">
-                    <Link to={`/u/${this.state.username}/following`} className="stat-link">
-                        <div className="single-stat">
+                <div onClick={this.handleActive} className="following-stat">
+                    <Link to={`/u/${username}/following`} className="stat-link">
+                        <div className={cn("single-stat", {activeStat:this.state.following_active})}>
                             <h3 className="stat-title">Following</h3>
                             <p className="stat-number">{this.state.following}</p>
                         </div>
                     </Link>
                 </div>
-                <div className="followers-stat">
-                    <Link to={`/u/${this.state.username}/followers`} className="stat-link">
-                        <div className="single-stat">
+                <div onClick={this.handleActive} className="followers-stat">
+                    <Link to={`/u/${username}/followers`} className="stat-link">
+                        <div className={cn("single-stat", {activeStat:this.state.followers_active})}>
                             <h3 className="stat-title">Followers</h3>
                             <p className="stat-number">{this.state.followers}</p>
                         </div>
                     </Link>
                 </div>
                 <div className="hearts-stat">
-                    <Link to={`/u/${this.state.username}/hearts`} className="stat-link">
-                        <div className="single-stat">
+                    <Link to={`/u/${username}/hearts`} className="stat-link">
+                        <div onClick={this.handleActive} className={cn("single-stat", {activeStat:this.state.followers_active})}>
                             <h3 className="stat-title">Hearts</h3>
                             <p className="stat-number">{this.state.hearts}</p>
                         </div>

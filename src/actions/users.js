@@ -1,4 +1,3 @@
-
 export function setUser(user){
     return {
         type:"SET_USER",
@@ -7,9 +6,8 @@ export function setUser(user){
 }
 
 export function getUser(username){
-    let us="radiohead";
     return dispatch=>{
-        fetch(`/api/get-user/${us}`)
+        return fetch(`/api/get-user/${username}`)
         .then(res=>res.json())
         .then(data=>dispatch(setUser(data.posts)))
     }

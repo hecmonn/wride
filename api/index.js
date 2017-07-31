@@ -1,6 +1,5 @@
 import express from 'express';
-import {graphDb} from '../config';
-
+import {graphDb,tokenSecret} from '../config';
 //AUTH
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -31,8 +30,9 @@ const gquery=(query,res)=>{
 
 router.post('/login',(req,res)=>{
     const {identifier,password}=req.body;
-    let sql=`MATCH`;
-    console.log(sql);
+    let cql=`MATCH (u:User) WHERE u.username='${identifier}' OR u.email='${identifier}'`;
+    let resCql=session.run(cql);
+    console.log(resCql);
     let queryRes=con.query(sql,(err,response,fields)=>{
         if(err) console.error(err);
         if(response.length>0){
@@ -42,7 +42,6 @@ router.post('/login',(req,res)=>{
                     usuario: response[0].usuario,
                     email: response[0].email,
                     initials: initials(response[0].nombre,response[0].apellido),
-                    puntos: response[0].puntos,
                     nombre: prettyName(response[0].nombre,response[0].apellido)
                 }, tokenSecret.jwtSecret);
                 res.json({token,access:true});
@@ -57,23 +56,35 @@ router.post('/login',(req,res)=>{
 
 router.post('/auth',(req,res)=>{
     const {identifier,password}=req.body;
-    let sql=`MATCH (u:User) WHERE u.username="${identifier}" OR u.email="${identifier}" RETURN u.username,u.first_name,u.last_name`;
-    session.run(sql)
+    let cql=`MATCH (u:User) WHERE u.username="${identifier}" OR u.email="${identifier}" RETURN u.username as username,u.fname as fname,u.lname as lname,u.psswd as psswd,ID(u) as uid`;
+    let authQuery=session.run(cql)
     .then(result=>{
-        let posts=[];
-        result.records.forEach(record=>{
-            let keys=record.keys;
-            let values=record._fields;
-            let tempObj={};
-            for (var i = 0; i < keys.length; i++) {
-                let id=keys[i];
-                tempObj[id]=values[i];
+        if(result.records.length>0){
+            let hshd_psswd=result.records[0]._fields[3];
+            if(bcrypt.compareSync(password,hshd_psswd)) {
+                let auth=[];
+                result.records.forEach(record=>{
+                    let keys=record.keys;
+                    let values=record._fields;
+                    let tempObj={};
+                    for (var i = 0; i < keys.length; i++) {
+                        let id=keys[i];
+                        tempObj[id]=values[i];
+                    }
+                    auth.push(tempObj);
+                })
+                const {uid,username,fname,lname,psswd,email}=auth[0];
+                const token=jwt.sign({
+                    ...auth[0]
+                },tokenSecret.jwtSecret)
+                res.json({token,access:true})
+            } else {
+                res.status(401).json({errors:{form:'Invalid psswd'},access:false});
             }
-            posts.push(tempObj);
-        });
-        res.json({posts});
-    })
-    .catch(err=>{return err;})
+        } else {
+            res.status(401).json({errors:{form:'Invalid credentials'},access:false});
+        }
+    });
 });
 
 router.get('/get-home-posts/:active_user',(req,res)=>{
@@ -90,7 +101,16 @@ router.get('/get-user-posts/:uid',(req,res)=>{
 
 router.get('/get-user/:username',(req,res)=>{
     let username=req.params.username;
-    let sql=`MATCH (u:User) WHERE u.username="${username}" RETURN u.username as username, u.first_name as first_name, u.last_name as last_name, u.bod as bod, u.bio as bio, u.created_date as created_date, u.profile as profile, u.cover as cover`;
+    let sql=`MATCH (u:User) WHERE u.username="${username}" RETURN u.username as username, u.fname as fname, u.lname as lname, u.bod as bod, u.bio as bio, u.created_date as created_date, u.profile as profile, u.cover as cover`;
+    console.log(sql);
     let user=gquery(sql,res);
 });
+
+router.post('/submit-user-reg',(req,res)=>{
+    let {fname,lname,username,password,email,bod}=req.body.data;
+    const psswd_hash=bcrypt.hashSync(password,10);
+    let cql=`CREATE (u:User {fname:'${fname}',lname:'${lname}',username:'${username}',psswd:'${psswd_hash}',email:'${email}',bod:'${bod}'}) return u`;
+    session.run(cql)
+});
+
 export default router;
