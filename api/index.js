@@ -111,6 +111,7 @@ router.post('/submit-user-reg',(req,res)=>{
     const psswd_hash=bcrypt.hashSync(password,10);
     let cql=`CREATE (u:User {fname:'${fname}',lname:'${lname}',username:'${username}',psswd:'${psswd_hash}',email:'${email}',bod:'${bod}'}) return u`;
     session.run(cql)
+    console.log(cql);
 });
 
 export default router;
