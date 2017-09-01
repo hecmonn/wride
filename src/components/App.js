@@ -6,6 +6,7 @@ import Home from './Home';
 import Profile from './Profile';
 import Login from './Login/Login';
 import Register from './Register';
+import Editor from './Editor';
 
 class App extends Component {
     render(){
@@ -14,6 +15,7 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route exact path="/" component={Home} />
+                <Route exact path="/inspire" component={Editor} />
                 <Route path="/u/:username" component={Profile} />
             </div>
         )

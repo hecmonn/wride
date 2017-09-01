@@ -11,6 +11,7 @@ class Nav extends Component {
                     <div className="upper-nav">
                         <div className="un-cont logo-title"> <Link to="/">Wride.</Link></div>
                         <Search />
+                        <Link to='/inspire' className="link nav-link">fuck this shit lill ass nigh Inspire</Link>
                         <UserMenu /><hr/>
                     </div>
                     <LowerNav/>

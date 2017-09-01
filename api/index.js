@@ -32,7 +32,6 @@ router.post('/login',(req,res)=>{
     const {identifier,password}=req.body;
     let cql=`MATCH (u:User) WHERE u.username='${identifier}' OR u.email='${identifier}'`;
     let resCql=session.run(cql);
-    console.log(resCql);
     let queryRes=con.query(sql,(err,response,fields)=>{
         if(err) console.error(err);
         if(response.length>0){
@@ -89,7 +88,7 @@ router.post('/auth',(req,res)=>{
 
 router.get('/get-home-posts/:active_user',(req,res)=>{
     let active_user=req.params.active_user;
-    let sql=`MATCH (s:User)-[:FOLLOWS]->(u)-[:WROTE]->(p:Post) WHERE ID(s)=${21} RETURN u.username as username,u.first_name as first_name, u.last_name as last_name, u.profile as profile, p.body as text,p.created_date as created_date,p.media as media, ID(p) as pid, ID(s) as uid ORDER BY p.created_date DESC`; // DESC SKIP 0 LIMIT 0`;
+    let sql=`MATCH (s:User)-[:FOLLOWS]->(u)-[:WROTE]->(p:Post) WHERE ID(s)=${1} RETURN u.username as username,u.first_name as first_name, u.last_name as last_name, u.profile as profile, p.body as text,p.created_date as created_date,p.media as media, ID(p) as pid, ID(s) as uid ORDER BY p.created_date DESC`; // DESC SKIP 0 LIMIT 0`;
     let posts=gquery(sql,res);
 });
 
@@ -113,5 +112,12 @@ router.post('/submit-user-reg',(req,res)=>{
     session.run(cql)
     console.log(cql);
 });
+
+router.post('/submit-post',(req,res)=>{
+    console.log(req.body)
+    let {body,title,uid}=req.body.data;
+    let cql=`MATCH (a:User) WHERE ID(a)=${uid} CREATE (a)-[r:WROTE]->(b:Post {title:'${title}',body:'${body}',created_date: TIMESTAMP()})`;
+    session.run(cql);
+})
 
 export default router;
