@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
+import Editor from 'medium-editor';
 
 class WriteBox extends React.Component {
     constructor(props){

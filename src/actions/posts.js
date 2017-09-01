@@ -29,3 +29,24 @@ export function fetchHomePosts(auid){
         .then(data=>dispatch(setHomePosts(data.posts)))
     }
 }
+
+export function setSubmit(data){
+    return{
+        type:"SET_SUBMIT",
+        data
+    }
+}
+
+export function submitPost(data){
+    return dispatch=>{
+        return fetch('/api/submit-post',{
+            method:'post',
+            body:JSON.stringify({data}),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        .then(res=>res.json())
+        .then(data=>dispatch(setSubmit(data)))
+    }
+}
