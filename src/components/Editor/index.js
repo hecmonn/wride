@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import EditorM from 'medium-editor';
+import mediumInsert from 'medium-editor-insert-plugin';
+import $ from 'jquery';
 import Nav from '../Nav';
 
 import {submitPost} from '../../actions/posts';
@@ -19,11 +21,14 @@ class Editor extends React.Component {
     }
 
     componentDidMount() {
-        this.editor=new EditorM('.editor',{
+        const editor=new EditorM('.editor',{
             placeholder:{
                 text:'So, what happened?'
             }
         });
+        $('.editor').mediumInsert({
+            editor:editor
+        })
     }
     handleChange=(e)=>{
         this.setState({[e.target.name]:e.target.value})

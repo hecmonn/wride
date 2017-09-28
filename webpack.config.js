@@ -1,4 +1,5 @@
 var path=require('path');
+var webpack=require('webpack');
 module.exports={
     target:'web',
     context:__dirname,
@@ -15,4 +16,15 @@ module.exports={
         }]
     },
     externals:['ws'],
+    resolve:{
+        alias:{
+            'jquery-ui':'jquery-ui/ui'
+        }
+    },
+    plugins:[
+        new webpack.ProvidePlugin({
+            jQuery:"jquery",
+            $:"jquery"
+        })
+    ]
 }
