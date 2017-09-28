@@ -46,6 +46,7 @@ class LoginForm extends React.Component {
                   let decodedToken=jwtDecode(token);
                   this.props.validateAuth(decodedToken);
                   this.setState({isLoading:false,redirect:true});
+                  window.location.reload();
               }
               else {
                   const {errors}=r.data;
