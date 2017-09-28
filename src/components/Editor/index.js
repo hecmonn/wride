@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import EditorM from 'medium-editor';
 import Nav from '../Nav';
 
@@ -10,11 +11,13 @@ class Editor extends React.Component {
         this.state={
             body:'',
             title:'',
-            photo:''
+            photo:'',
+            loading:false,
+            redirect:false
         }
         this.handleChange=this.handleChange.bind(this);
     }
-    
+
     componentDidMount() {
         this.editor=new EditorM('.editor',{
             placeholder:{
@@ -36,24 +39,30 @@ class Editor extends React.Component {
                 console.log(r);
             }
         )
-            
+
     }
-    
+
     render () {
+        const {redirect}=this.state;
         return (
+            !redirect?
             <div>
                 <Nav />
                 <div className="global-holder">
-                    <button type="submit" className="btn btn-lg pull-right" onClick={this.handleSubmit}>Inspire</button>
                     <form>
-                        <input type="text" name="title" className="form-input" onChange={this.handleChange} placeholder="Title" />
                         <div className="editor-holder">
-                        
-                            <div className="editor" id="editor-wrid"></div>
+                            <div className="editor-header">
+                                <button type="submit" className="btn btn-lg pull-right" onClick={this.handleSubmit}>Inspire</button>
+                            </div>
+                            <div className="editor-body">
+                                <input type="text" name="title" className="form-input title-input" onChange={this.handleChange} placeholder="Title" />
+                                <div className="editor" id="editor-wrid"></div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
+            : <Redirect to="/inspirations" />
         )
     }
 }

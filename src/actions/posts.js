@@ -16,7 +16,7 @@ export function setHomePosts(posts){
 //api calls
 export function fetchUserPosts(uid){
     return dispatch=>{
-        fetch(`/api/get-user-posts/${1}`)
+        return fetch(`/api/get-user-posts/${uid}`)
         .then(res=>res.json())
         .then(data=>dispatch(setUserPosts(data.posts)))
     }

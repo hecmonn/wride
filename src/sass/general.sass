@@ -28,6 +28,7 @@ a.active
     &:focus
         outline: none
 
+
 .hidden
     display: none
 hr
@@ -120,6 +121,16 @@ img.profile-img-lg
 .light-shadow
     box-shadow: 0 1.5px 5px 0 rgba(0, 0, 0, 0.19)
 
+.following-btn
+    &>*
+        margin: auto
+        position: relative
+        left: -10px
+.followingSuc
+    background-color: $success-green
+    color: white
+    &:hover
+        background-color: $red-warning
 
 [contentEditable=true]:empty:before
     content: attr(placeholder)

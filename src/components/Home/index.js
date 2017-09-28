@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchHomePosts} from '../../actions/posts.js';
+import {fetchHomePosts} from '../../actions/posts';
 import {Redirect} from 'react-router-dom';
 //components
 import WTF from './WTF';
@@ -21,7 +21,8 @@ class Home extends Component {
         if(!!this.props.auth.access) this.setState({redirect:true});
     }
     componentDidMount() {
-        this.props.fetchHomePosts();
+        const uid=this.props.auth.uid.low;
+        this.props.fetchHomePosts(uid);
     }
     render(){
         const {redirect}=this.state;

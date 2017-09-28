@@ -15,19 +15,16 @@ class NewsFeed extends React.Component {
             <hr/>
         </div>
     );
-    postsList=({posts})=>(
+    postsList=(posts)=>(
         <div>
-            {console.log(posts)}
-            {this.props.posts.map(post=><Post post={post} key={post.pid.low} />)}
+            {this.props.posts.map((p,i)=><Post post={p} key={i} />)}
         </div>
     )
     handleModalClick=(e)=>{
         e.preventDefault();
-        console.log('modal');
     }
 
     render () {
-
         return(
             <div className="newsfeed">
                 <div className="all-posts">

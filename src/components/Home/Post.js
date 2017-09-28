@@ -1,30 +1,19 @@
 import React, { PropTypes } from 'react';
 import {Link} from 'react-router-dom';
 import classnames from 'classnames';
+import renderHtml from 'react-render-html';
+import unixDate from 'unix-date';
+import {prettyName} from '../../helpers/helpers';
 class Post extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            created_date: this.props.post.created_date,
-            username: this.props.post.username,
-            profile: 'http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg',
-            name: this.full_name(this.props.post.first_name,this.props.post.last_name),
-            text: '',
-            media: this.props.post.media,
+            created_date: unixDate.parseDay(this.props.post.created_date.low),
+            profile: 'http://www.bouncepen.com/wp-content/themes/twentyfifteen/uploads/user-photo/dummy-image.png',
             tags: [],
             liked: false,
             shared:false,
         }
-    }
-
-    full_name=(fname,lname)=>{
-        let first=fname.replace(/\b\w/g, l => l.toUpperCase());
-        let last=lname.replace(/\b\w/g, l => l.toUpperCase());
-        return name= first+" "+last;
-        //this.setState({name});
-    }
-    pretty_date=date=>{
-        return datef('dd mmm', date)
     }
     handleLike(){
         //
@@ -35,6 +24,9 @@ class Post extends React.Component {
     showModal(){
     }
     render () {
+        const {created_date}=this.state;
+        const {title,text,username,media,first_name,last_name}=this.props.post;
+        let name=prettyName(first_name,last_name);
         return(
                 <div className="post-holder" onClick={this.showModal}>
                     <div className="post-right">
@@ -46,13 +38,14 @@ class Post extends React.Component {
                     <div className="post-left">
                         <div className="post-content">
                             <div className="post-info">
-                                <Link to={{pathname:`/u/${this.state.username}`, query:{username: this.state.username}}}  className="name-post">{this.state.name}</Link>
-                                <Link to={{pathname:`/u/${this.state.username}`, query:{username: this.state.username}}} className="username-post">{this.state.username}</Link>
-                                <Link to={{pathname:`/u/${this.state.username}`, query:{username: this.state.username}}} className="text-muted">{this.state.created_date}</Link>
+                                <Link to={{pathname:`/u/${username}`, query:{username}}}  className="name-post">{name}</Link>
+                                <Link to={{pathname:`/u/${username}`, query:{username}}} className="username-post">{username}</Link>
+                                <Link to={{pathname:`/u/${username}`, query:{username}}} className="text-muted">{created_date}</Link>
                             </div>
                             <div className="post-input">
-                                    <img src={this.state.media} alt="post-image" className="img-post" />
-                                <p className="text-post">{this.props.post.text}</p>
+                                    <h2 className="title">{title}</h2>
+                                    {media && <img src={media} alt="post-img" className="img-post" /> }
+                                    <p className="text-post">{renderHtml(text)}</p>
                             </div>
                             <div className="cta-holder">
                                 <div className="cta-btns text-muted">
