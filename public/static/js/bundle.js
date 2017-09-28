@@ -49940,13 +49940,14 @@ var Editor = function (_React$Component) {
         };
 
         _this.handleSubmit = function (e) {
+            _this.setState({ loading: true });
             e.preventDefault();
             var title = _this.state.title;
 
             var uid = _this.props.auth.uid.low;
             var body = document.getElementById('editor-wrid').innerHTML;
             _this.props.submitPost({ title: title, body: body, uid: uid }).then(function (r) {
-                console.log(r);
+                _this.setState({ loading: false });
             });
         };
 
@@ -49970,7 +49971,8 @@ var Editor = function (_React$Component) {
                 }
             });
             (0, _jquery2.default)('.editor').mediumInsert({
-                editor: editor
+                editor: editor,
+                enbaled: true
             });
         }
     }, {

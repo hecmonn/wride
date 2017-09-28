@@ -27,24 +27,23 @@ class Editor extends React.Component {
             }
         });
         $('.editor').mediumInsert({
-            editor:editor
+            editor,
+            enbaled:true
         })
     }
     handleChange=(e)=>{
         this.setState({[e.target.name]:e.target.value})
     }
     handleSubmit=(e)=>{
+        this.setState({loading:true})
         e.preventDefault();
         const {title}=this.state;
         let uid=this.props.auth.uid.low;
         let body=document.getElementById('editor-wrid').innerHTML;
         this.props.submitPost({title,body,uid})
-        .then(
-            r=>{
-                console.log(r);
-            }
-        )
-
+        .then(r=>{
+            this.setState({loading:false})
+        })
     }
 
     render () {
