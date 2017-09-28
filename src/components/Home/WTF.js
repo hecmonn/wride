@@ -16,7 +16,7 @@ class WTF extends Component {
                             <img className="profile-img profile-img-md" src="http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg" alt="wtf-img"/>
                         </div>
                         <div className="wtf-info">
-                            <Link to="#"><strong>Name</strong></Link>
+                            <Link to="/u/bsmith"><strong>Name</strong></Link>
                             <Link to="#">Username</Link>
                         </div>
                         <div className="wtf-follow">
