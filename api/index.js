@@ -105,6 +105,29 @@ router.post('/un-follow',(req,res)=>{
     let cql=`MATCH (a:User),(b:User) WHERE a.username='${au_username}' AND b.username='${username}' CREATE (a)-[r:FOLLOWS {created_date:TIMESTAMP()}]->(b) RETURN r`;
     if(following) cql=`MATCH (a:User)-[r:FOLLOWS]->(b:User) WHERE a.username='${au_username}' AND b.username='${username}' DELETE r`;
     gquery(cql,res)
+});
+
+router.post('/un-heart',(req,res)=>{
+    let {au_username,username,pid,hearted}=req.body.data;
+    let cql=`MATCH (p:Post),(u:User) WHERE ID(p)=${pid} AND u.username='${au_username}' CREATE (u)-[r:HEARTS {created_date:timestamp()}]->(p) RETURN r`
+    if(hearted) cql=`MATCH (a:User)-[r:HEARTS]->(b:Post) WHERE ID(b)=${pid} AND a.username='${au_username}' DELETE r`
+    gquery(cql,res);
+});
+router.post('/un-share',(req,res)=>{
+    let {au_username,username,pid,shared}=req.body.data;
+    let cql=`MATCH (p:Post),(u:User) WHERE ID(p)=${pid} AND u.username='${au_username}' CREATE (u)-[r:SHARED {created_date:timestamp()}]->(p) RETURN r`
+    if(shared) cql=`MATCH (a:User)-[r:SHARED]->(b:Post) WHERE ID(b)=${pid} AND a.username='${au_username}' DELETE r`
+    gquery(cql,res);
 })
 
+router.post('/get-hearted',(req,res)=>{
+    let {au_username,pid}=req.body.data;
+    let cql=`MATCH (a:User)-[r:HEARTS]->(b:Post) WHERE ID(b)=${pid} AND a.username='${au_username}' RETURN r`
+    gquery(cql,res);
+});
+router.post('/get-shared',(req,res)=>{
+    let {au_username,pid}=req.body.data;
+    let cql=`MATCH (a:User)-[r:SHARED]->(b:Post) WHERE ID(b)=${pid} AND a.username='${au_username}' RETURN r`
+    gquery(cql,res);
+});
 export default router;

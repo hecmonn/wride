@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import classnames from 'classnames';
 import renderHtml from 'react-render-html';
 import unixDate from 'unix-date';
 import {prettyName} from '../../helpers/helpers';
+import {unHeart,unShare,getHearted,getShared} from '../../actions/cta';
+
 class Post extends React.Component {
     constructor(props){
         super(props);
@@ -11,20 +14,46 @@ class Post extends React.Component {
             created_date: unixDate.parseDay(this.props.post.created_date.low),
             profile: 'http://www.bouncepen.com/wp-content/themes/twentyfifteen/uploads/user-photo/dummy-image.png',
             tags: [],
-            liked: false,
+            hearted: false,
             shared:false,
         }
     }
-    handleLike(){
-        //
+    handleHeart=(e)=>{
+        e.preventDefault();
+        const au_username=this.props.auth.username;
+        const {username}=this.props.post;
+        const pid=this.props.post.pid.low;
+        const {hearted}=this.state;
+        this.props.unHeart({au_username,username,pid,hearted})
+        .then(r=>{
+            this.setState({hearted:this.props.cta.hearted})
+        })
     }
-    handleShare(){
-        //
+    handleShare=(e)=>{
+        e.preventDefault();
+        const au_username=this.props.auth.username;
+        const {username}=this.props.post;
+        const pid=this.props.post.pid.low;
+        const {shared}=this.state;
+        this.props.unShare({au_username,username,pid,shared})
+        .then(r=>{
+            this.setState({shared:this.props.cta.shared})
+        })
     }
-    showModal(){
+    componentWillMount() {
+        const au_username=this.props.auth.username;
+        const pid=this.props.post.pid.low;
+        this.props.getHearted({au_username,pid})
+        .then(r=>{
+            this.setState({hearted:this.props.cta.hearted})
+        });
+        this.props.getShared({au_username,pid})
+        .then(r=>{
+            this.setState({shared:this.props.cta.shared})
+        })
     }
     render () {
-        const {created_date}=this.state;
+        const {created_date,hearted,shared}=this.state;
         const {title,text,username,media,first_name,last_name}=this.props.post;
         let name=prettyName(first_name,last_name);
         return(
@@ -50,8 +79,8 @@ class Post extends React.Component {
                             <div className="cta-holder">
                                 <div className="cta-btns text-muted">
                                     <span className="post-opt">...</span>
-                                    <span className={classnames('cta-btn',{ctaActive: this.state.shared})} onClick={this.handleShare}>share</span>
-                                    <span className={classnames('cta-btn',{ctaActive: this.state.liked})} onClick={this.handleLike}>heart</span>
+                                    <span className={classnames('cta-btn',{ctaActive: shared})} onClick={this.handleShare}>share</span>
+                                    <span className={classnames('cta-btn',{ctaActive: hearted})} onClick={this.handleHeart}>heart</span>
                                 </div>
                             </div>
                         </div>
@@ -62,5 +91,11 @@ class Post extends React.Component {
         )
     }
 }
+let mapStateToProps=state=>{
+    return{
+        auth: state.auth,
+        cta: state.cta
+    }
+}
 
-export default Post;
+export default connect(mapStateToProps,{unHeart,unShare,getHearted,getShared})(Post);
