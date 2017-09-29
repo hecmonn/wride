@@ -87,10 +87,9 @@ router.post('/submit-user-reg',(req,res)=>{
     console.log(cql);
 });
 router.post('/submit-post',(req,res)=>{
-    console.log(req.body)
     let {body,title,uid}=req.body.data;
     let cql=`MATCH (a:User) WHERE ID(a)=${uid} CREATE (a)-[r:WROTE]->(b:Post {title:'${title}',body:'${body}',created_date: TIMESTAMP()})`;
-        session.run(cql);
+    gquery(cql,res);
 });
 
 router.post('/following',(req,res)=>{

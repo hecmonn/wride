@@ -1,5 +1,6 @@
 var path=require('path');
 var webpack=require('webpack');
+var imports=require('imports-loader')
 module.exports={
     target:'web',
     context:__dirname,

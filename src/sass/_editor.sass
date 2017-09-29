@@ -1,7 +1,55 @@
 .editor-holder
     .editor-header
-        //
+        display: flex
+        .left-side,.right-side
+            display: inline-block
+        .left-side
+            width: 60%
+            display: flex
+            .user-img,.user-cred
+                display: inline-block
+                padding: 0 1em
+            .user-img
+                margin-top: 1em
+                img
+                    height: 70px
+                    width: 70px
+            .user-cred
+                margin: 0
+                padding: 0
+                label
+                    display: block
+                    padding: .2em 0
+                .user-name
+                    font-size: 1.3em
+                    font-weight: bold
+                .username
+                    font-size: 1em
+        .right-side
+            width: 40%
+            .dd-holder
+                width: 20%
+                position: absolute
+                .dd-trigger
+                    font-size: 1.5em
+                    font-weight: bold
+                    cursor: pointer
+                    color: $sgrey
+                .dd-content
+                    border-radius: 5px
+                    text-overflow: ellipsis
+                    overflow: hidden
+                    background-color: white
+                    z-index: 1
+                    .dd-margin
+                        margin: 1em
+                        color: $sgrey
+                        .inspire-btn
+                            position: relative
+                            float: right
+                            margin-bottom: 1em
     .editor-body
+        color: $sgrey
         .title-input
             border: 0
             font-size: 2em

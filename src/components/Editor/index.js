@@ -5,6 +5,9 @@ import EditorM from 'medium-editor';
 import mediumInsert from 'medium-editor-insert-plugin';
 import $ from 'jquery';
 import Nav from '../Nav';
+import Header from './Header';
+
+import {prettyName} from '../../helpers/helpers';
 
 import {submitPost} from '../../actions/posts';
 class Editor extends React.Component {
@@ -19,17 +22,19 @@ class Editor extends React.Component {
         }
         this.handleChange=this.handleChange.bind(this);
     }
-
+    isValid=(e)=>{
+        const {body,title}=this.state
+    }
     componentDidMount() {
         const editor=new EditorM('.editor',{
             placeholder:{
                 text:'So, what happened?'
             }
         });
-        $('.editor').mediumInsert({
-            editor,
-            enbaled:true
-        })
+        //$('.editor').mediumInsert({
+        //    editor,
+        //    enbaled:true
+        //})
     }
     handleChange=(e)=>{
         this.setState({[e.target.name]:e.target.value})
@@ -42,12 +47,20 @@ class Editor extends React.Component {
         let body=document.getElementById('editor-wrid').innerHTML;
         this.props.submitPost({title,body,uid})
         .then(r=>{
-            this.setState({loading:false})
+            this.setState({
+                loading:false,
+                redirect:true
+            })
         })
+    }
+    componentWillMount() {
+        const {username,fname,lname,profile}=this.props.auth;
+        let name=prettyName(fname,lname);
+        this.user={username,name,profile};
     }
 
     render () {
-        const {redirect}=this.state;
+        const {redirect,loading}=this.state;
         return (
             !redirect?
             <div>
@@ -55,9 +68,7 @@ class Editor extends React.Component {
                 <div className="global-holder">
                     <form>
                         <div className="editor-holder">
-                            <div className="editor-header">
-                                <button type="submit" className="btn btn-lg pull-right" onClick={this.handleSubmit}>Inspire</button>
-                            </div>
+                            <Header user={this.user} handleSubmit={this.handleSubmit} />
                             <div className="editor-body">
                                 <input type="text" name="title" className="form-input title-input" onChange={this.handleChange} placeholder="Title" />
                                 <div className="editor" id="editor-wrid"></div>
@@ -66,7 +77,7 @@ class Editor extends React.Component {
                     </form>
                 </div>
             </div>
-            : <Redirect to="/inspirations" />
+            : <Redirect to="/" />
         )
     }
 }

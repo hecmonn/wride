@@ -1,0 +1,92 @@
+small button {
+  float: right;
+}
+
+a {
+  cursor: pointer;
+}
+
+.col-1 {
+  margin-right: 1rem;
+  &.right {
+    width: 50%;
+  }
+}
+
+.CodeMirror {
+  height: auto;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+ul.tag-box-pills {
+  padding-left: .5rem;
+  font-size: .8em;
+
+  li {
+    display: inline-block;
+    margin-right: .4rem;
+    margin-top: .4rem;
+    background-color: $greyish;
+    border-radius: 0.25rem;
+
+    .remove {
+      margin-left: 5px;
+      color: black;
+    }
+
+    .tag-box-pill-text {
+      margin-left: 0.5rem;
+    }
+
+    button {
+      padding: 0.25rem 0.75rem;
+      background-color: transparent;
+      border: 0
+    }
+
+    &.system {
+      background-color: chocolate;
+    }
+  }
+}
+
+ul.autocomplete {
+  padding: .1em;
+  font-size: .8em;
+
+  li {
+    cursor: pointer;
+
+    &.considering {
+      background-color: transparent;
+
+    }
+
+    .option-text {
+      padding-left: 0.5rem;
+    }
+  }
+}
+
+.tag-box {
+  border-radius: 0.25rem 0.25rem 0 0;
+
+  input {
+    padding: 1em;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+  }
+}
