@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import UserMenu from './UserMenu';
 import Search from './Search';
 import LowerNav from './LowerNav';
+import SearchBar from './SearchBar';
 class Nav extends Component {
     render(){
         return(
@@ -10,11 +11,13 @@ class Nav extends Component {
                 <div className="nav-content">
                     <div className="upper-nav">
                         <div className="un-cont logo-title"> <Link to="/">Wride.</Link></div>
-                        <Search />
-                        <Link to='/inspire' className="link nav-link">fuck this shit lill ass nigh Inspire</Link>
-                        <UserMenu /><hr/>
+                        <SearchBar />
+                        <div className="right-side">
+                            <Link to='/inspire' className="link nav-link inspire-link">Inspire</Link>
+                            <Link to='/inspire' className="link nav-link not-link">Not</Link>
+                            <UserMenu />
+                        </div>
                     </div>
-                    <LowerNav/>
                 </div>
             </div>
         )

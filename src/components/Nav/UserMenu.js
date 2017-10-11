@@ -14,7 +14,7 @@ class UserMenu extends React.Component {
                             <Link to={`/u/${username}`}>
                                 <strong>{prettyName(fname,lname)}</strong><br/>
                             </Link>
-                                <span>{username}</span>
+                                <span className="text-muted">{username}</span>
                             <hr/>
                         </li>
                         <li><Link to='/underlines'>Underlines</Link></li>

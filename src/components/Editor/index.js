@@ -31,10 +31,10 @@ class Editor extends React.Component {
                 text:'So, what happened?'
             }
         });
-        //$('.editor').mediumInsert({
-        //    editor,
-        //    enbaled:true
-        //})
+        $('.editor').mediumInsert({
+            editor,
+            enbaled:true
+        });
     }
     handleChange=(e)=>{
         this.setState({[e.target.name]:e.target.value})
@@ -64,7 +64,6 @@ class Editor extends React.Component {
         return (
             !redirect?
             <div>
-                <Nav />
                 <div className="global-holder">
                     <form>
                         <div className="editor-holder">

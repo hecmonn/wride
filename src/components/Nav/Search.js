@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 
 class Search extends Component{
-    componentDidMount(e){
-    }
     render(){
         return (
             <div className="un-cont search-btn" >

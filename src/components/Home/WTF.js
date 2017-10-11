@@ -8,7 +8,7 @@ class WTF extends Component {
         return(
             <div className="wtf-holder">
                 <div className="header">
-                    <p>Who To Follow</p><hr/>
+                    <h3>Who To Follow</h3><hr/>
                 </div>
                 <div className="wtf-content">
                     <div className="wtf-usr-holder">
