@@ -11,10 +11,9 @@ class Nav extends Component {
                 <div className="nav-content">
                     <div className="upper-nav">
                         <div className="un-cont logo-title"> <Link to="/">Wride.</Link></div>
-                        <SearchBar />
                         <div className="right-side">
-                            <Link to='/inspire' className="link nav-link inspire-link">Inspire</Link>
-                            <Link to='/inspire' className="link nav-link not-link">Not</Link>
+                            <Link to='/inspire' className="nav-link inspire-link"><span className="link-gradient">inspire</span></Link>
+                            <span className="icon not-icon"></span>
                             <UserMenu />
                         </div>
                     </div>

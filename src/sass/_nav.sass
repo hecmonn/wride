@@ -12,28 +12,32 @@
         height: inherit
         @include responsive-big($big-break)
         .upper-nav
-            margin: 1% auto
+            margin: .5% auto
             height: 80%
-        .upper-nav div.un-cont,.lower-nav div.ln-cont
-            display: inline-block
-        .upper-nav
-            border: 3px solid blue
+            display: block
+            //.upper-nav div.un-cont,.lower-nav div.ln-cont
+                display: inline-block
+            .main-search-bar,.logo-title,.right-side
+                display: inline-block
             .logo-title
-                font-weight: bold
+                display: inline-grid
+                align-items: center
+                text-align: center
+                height: 100%
+                font-weight: 700
                 font-size: 2em
-            .search-btn
-                border: 3px solid yellow
-                cursor: pointer
-                margin: 0 5%
-                &>*
-                    display: inline-block
-                .search-form-holder
-                    form#search-form
-                        margin-left: 1%
             .right-side
-                border: 3px solid blue
+                height: 100%
                 position: relative
                 float: right
+                .link-gradient
+                    transition: color 1s ease-out
+                    &:hover
+                        color: #b9b100
+                &>*
+                    display: inline-block
+                    padding: 0 1em
+
         .lower-nav
             display: none
             text-align: center

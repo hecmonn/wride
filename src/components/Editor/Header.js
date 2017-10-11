@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Tags from './Tags';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import cn from 'classnames';
 class Header extends React.Component {
     constructor(props){

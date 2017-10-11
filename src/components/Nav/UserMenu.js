@@ -6,8 +6,8 @@ class UserMenu extends React.Component {
     render () {
         const {username,fname,lname}=this.props.auth;
         return(
-            <div className="un-cont profile-img-sm profile-img-nav dropdown-holder ">
-                <img className="profile-img profile-img-sm" src="http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg" alt="profile-img profile-img-sm "/>
+            <div className="un-cont profile-img-md profile-img-nav dropdown-holder ">
+                <img className="profile-img profile-img-md" src="http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg" alt="profile-img profile-img-sm "/>
                 <div className="dropdown-content light-shadow">
                     <ul>
                         <li>
