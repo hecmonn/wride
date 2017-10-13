@@ -29,17 +29,24 @@ export default class BackspaceDeletion extends Component {
       this.setState({
         selected: selected.push(newTag)
       })
-      let tagsSend=[];
+      let tagsSent=[];
       selected._tail.array.map(r=>{
-          tagsSend.push(r.label);
+          tagsSent.push(r.label);
       });
-      this.props.handleTag(tagsSend)
+      console.log(selected);
+      this.props.handleTag(tagsSent);
     }
 
     const remove = tag => {
       this.setState({
         selected: selected.filter(t => t.value !== tag.value)
       })
+      let tagsSent=[];
+      selected._tail.array.map(r=>{
+          tagsSent.push(r.label);
+      });
+      console.log(selected);
+      this.props.handleTag(tagsSent);
     }
 
     const placeholder = selected.isEmpty() ? '' :

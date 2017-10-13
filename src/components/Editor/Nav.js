@@ -9,9 +9,6 @@ class Nav extends Component {
             dropdownHidden: true
         }
     }
-    handleTag=(tags)=>{
-        this.setState({tags});
-    }
     handleTrigger=()=>{
         this.setState({dropdownHidden: !this.state.dropdownHidden});
     }
@@ -34,7 +31,7 @@ class Nav extends Component {
                                     <div className="dd-margin dd-element">
                                         <h3 className="dd-element">Done?</h3>
                                         <p className="dd-element">Add up to 5 tags, in order for your story to reach more readers</p>
-                                        <Tags handleTag={this.handleTag} />
+                                        <Tags handleTag={this.props.handleTag} />
                                         <br/>
                                         <button type="submit" className="btn btn-md inspire-btn dd-element" onClick={this.props.handleSubmit}>Inspire</button>
                                     </div>

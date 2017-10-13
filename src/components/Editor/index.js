@@ -31,10 +31,10 @@ class Editor extends React.Component {
                 text:'So, what happened?'
             }
         });
-        $('.editor').mediumInsert({
-            editor,
-            enbaled:true
-        });
+        //$('.editor').mediumInsert({
+        //    editor,
+        //    enbaled:true
+        //});
     }
     handleChange=(e)=>{
         this.setState({[e.target.name]:e.target.value})
@@ -42,7 +42,8 @@ class Editor extends React.Component {
     handleSubmit=(e)=>{
         this.setState({loading:true})
         e.preventDefault();
-        const {title}=this.state;
+        const {title,tags}=this.state;
+        console.log(tags);
         let uid=this.props.auth.uid.low;
         let body=document.getElementById('editor-wrid').innerHTML;
         console.log(title,'----',body,'---',uid)
@@ -51,9 +52,13 @@ class Editor extends React.Component {
         .then(r=>{
             this.setState({
                 loading:false,
-                redirect:true
+                redirect:true,
+                tags: []
             })
         })
+    }
+    handleTag=(tags)=>{
+        this.setState({tags});
     }
     componentWillMount() {
         const {username,fname,lname,profile}=this.props.auth;
@@ -66,7 +71,7 @@ class Editor extends React.Component {
         return (
             !redirect?
             <div>
-                <Nav handleSubmit={this.handleSubmit}/>
+                <Nav handleSubmit={this.handleSubmit} handleTag={this.handleTag}/>
                 <div className="global-holder">
                     <form>
                         <div className="editor-holder">

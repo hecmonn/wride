@@ -50732,11 +50732,12 @@ var BackspaceDeletion = function (_Component) {
         _this2.setState({
           selected: selected.push(newTag)
         });
-        var tagsSend = [];
+        var tagsSent = [];
         selected._tail.array.map(function (r) {
-          tagsSend.push(r.label);
+          tagsSent.push(r.label);
         });
-        _this2.props.handleTag(tagsSend);
+        console.log(selected);
+        _this2.props.handleTag(tagsSent);
       };
 
       var remove = function remove(tag) {
@@ -50745,6 +50746,12 @@ var BackspaceDeletion = function (_Component) {
             return t.value !== tag.value;
           })
         });
+        var tagsSent = [];
+        selected._tail.array.map(function (r) {
+          tagsSent.push(r.label);
+        });
+        console.log(selected);
+        _this2.props.handleTag(tagsSent);
       };
 
       var placeholder = selected.isEmpty() ? '' : "Add a tag";
@@ -50854,8 +50861,11 @@ var Editor = function (_React$Component) {
         _this.handleSubmit = function (e) {
             _this.setState({ loading: true });
             e.preventDefault();
-            var title = _this.state.title;
+            var _this$state2 = _this.state,
+                title = _this$state2.title,
+                tags = _this$state2.tags;
 
+            console.log(tags);
             var uid = _this.props.auth.uid.low;
             var body = document.getElementById('editor-wrid').innerHTML;
             console.log(title, '----', body, '---', uid);
@@ -50863,9 +50873,14 @@ var Editor = function (_React$Component) {
             _this.props.submitPost({ title: title, body: body, uid: uid }).then(function (r) {
                 _this.setState({
                     loading: false,
-                    redirect: true
+                    redirect: true,
+                    tags: []
                 });
             });
+        };
+
+        _this.handleTag = function (tags) {
+            _this.setState({ tags: tags });
         };
 
         _this.state = {
@@ -50887,10 +50902,10 @@ var Editor = function (_React$Component) {
                     text: 'So, what happened?'
                 }
             });
-            (0, _jquery2.default)('.editor').mediumInsert({
-                editor: editor,
-                enbaled: true
-            });
+            //$('.editor').mediumInsert({
+            //    editor,
+            //    enbaled:true
+            //});
         }
     }, {
         key: 'componentWillMount',
@@ -50914,7 +50929,7 @@ var Editor = function (_React$Component) {
             return !redirect ? _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_Nav2.default, { handleSubmit: this.handleSubmit }),
+                _react2.default.createElement(_Nav2.default, { handleSubmit: this.handleSubmit, handleTag: this.handleTag }),
                 _react2.default.createElement(
                     'div',
                     { className: 'global-holder' },
@@ -105981,10 +105996,6 @@ var Nav = function (_Component) {
 
         var _this = (0, _possibleConstructorReturn3.default)(this, (Nav.__proto__ || (0, _getPrototypeOf2.default)(Nav)).call(this, props));
 
-        _this.handleTag = function (tags) {
-            _this.setState({ tags: tags });
-        };
-
         _this.handleTrigger = function () {
             _this.setState({ dropdownHidden: !_this.state.dropdownHidden });
         };
@@ -106055,7 +106066,7 @@ var Nav = function (_Component) {
                                             { className: 'dd-element' },
                                             'Add up to 5 tags, in order for your story to reach more readers'
                                         ),
-                                        _react2.default.createElement(_Tags2.default, { handleTag: this.handleTag }),
+                                        _react2.default.createElement(_Tags2.default, { handleTag: this.props.handleTag }),
                                         _react2.default.createElement('br', null),
                                         _react2.default.createElement(
                                             'button',
