@@ -25,46 +25,58 @@
                     font-weight: bold
                 .username
                     font-size: 1em
-        .right-side
-            width: 40%
-            .dd-holder
-                width: 20%
-                position: absolute
-                .dd-trigger
-                    font-size: 1.5em
-                    font-weight: bold
-                    cursor: pointer
-                    color: $sgrey
-                .dd-content
-                    border-radius: 5px
-                    text-overflow: ellipsis
-                    overflow: hidden
-                    background-color: white
-                    z-index: 1
-                    .dd-margin
-                        text-align: left
-                        color: $sgrey
-                        .inspire-btn
-                            position: relative
-                            float: right
-                            margin-bottom: 1em
+
     .editor-body
         color: $sgrey
-        .title-input
-            border: 0
-            font-size: 2em
-            margin: 1em 0
-            font-weight: bold
-        #editor-wrid,.editor
-            margin: 0
+    .title-input
+        border: 0
+        font-size: 2em
+        margin: 1em 0
+        font-weight: bold
+    #editor-wrid,.editor
+        margin: 0
+        padding: 0
+        font-size: 1.5em
+        line-height: 1.5em
+        cursor: text
+        p
             padding: 0
-            font-size: 1.5em
-            line-height: 1.5em
-            p
-                padding: 0
-                margin: 0
+            margin: 0
             &:focus
                 outline: none
+        &:focus
+            outline: none
+.dd-holder
+    position: absolute
+    width: 60%
+    right: 0
+    .dd-trigger
+        margin-top: 1%
+        font-size: 1em
+        cursor: pointer
+        color: $sgrey
+        position: relative
+        top: 15px
+        .dd-trigger-object
+            width: 10%
+            position: relative
+            left: 70%
+
+    .dd-content
+        margin-top: 10%
+        border-radius: 5px
+        text-overflow: ellipsis
+        overflow: hidden
+        background-color: rgba(255, 255, 255, 0.95)
+        z-index: 1
+        .dd-margin
+            padding: 1em
+            text-align: left
+            color: $sgrey
+            .inspire-btn
+                position: relative
+                float: right
+                margin-bottom: 1em
 .show
     display: block
 .hide

@@ -108,8 +108,8 @@ class Profile extends React.Component {
                                     <p className="username-info">{username}</p>
                                     {bio && <p className="bio-info">{bio}</p>}
                                 </div>
+                                <WTF className="wtf-profile-margin"/>
                                 <Trends/>
-                                <WTF />
                             </div>
                             <div className="profile-feed">
                                 <Route exact path="/u/:username/following" component={Following} />

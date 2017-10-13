@@ -61,12 +61,12 @@ ul
 .global-holder
     max-width: 1000px
     margin: 0 auto
-    margin-top: 85px
+    margin-top: 75px
     width: 80%
     @include responsive-big($big-break)
 .icon
-    width: 30px
-    height: 30px
+    width: 20px
+    height: 20px
     cursor: pointer
     background-position: center
     background-size: contain
@@ -139,7 +139,11 @@ img.profile-img-lg
     border-left: 5px solid transparent
     border-right: 5px solid transparent
     border-bottom: 5px solid black
-
+.align-middle
+    display: inline-grid
+    align-items: center
+    text-align: center
+    height: 100%
 
 [contentEditable=true]:empty:before
     content: attr(placeholder)

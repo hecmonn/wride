@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 import EditorM from 'medium-editor';
 import mediumInsert from 'medium-editor-insert-plugin';
 import $ from 'jquery';
-import Nav from '../Nav';
+import Nav from './Nav';
 import Header from './Header';
 
 import {prettyName} from '../../helpers/helpers';
@@ -45,6 +45,8 @@ class Editor extends React.Component {
         const {title}=this.state;
         let uid=this.props.auth.uid.low;
         let body=document.getElementById('editor-wrid').innerHTML;
+        console.log(title,'----',body,'---',uid)
+        return false;
         this.props.submitPost({title,body,uid})
         .then(r=>{
             this.setState({
@@ -64,10 +66,11 @@ class Editor extends React.Component {
         return (
             !redirect?
             <div>
+                <Nav handleSubmit={this.handleSubmit}/>
                 <div className="global-holder">
                     <form>
                         <div className="editor-holder">
-                            <Header user={this.user} handleSubmit={this.handleSubmit} />
+                            <Header user={this.user}  />
                             <div className="editor-body">
                                 <input type="text" name="title" className="form-input title-input" onChange={this.handleChange} placeholder="Title" />
                                 <div className="editor" id="editor-wrid"></div>
