@@ -4,10 +4,12 @@ import users from './users';
 import auth from './auth';
 import following from './following';
 import cta from './cta';
+import modal from './modal';
 export const rootReducer = combineReducers({
     posts,
     auth,
     users,
     following,
-    cta
+    cta,
+    modal
 });

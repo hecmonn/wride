@@ -40,6 +40,24 @@ class Post extends React.Component {
             this.setState({shared:this.props.cta.shared})
         })
     }
+    handleModal=()=>{
+        const {created_date,hearted,shared}=this.state;
+        const {title,text,username,media,first_name,last_name}=this.props.post;
+        console.log(title);
+        const postData={
+            created_date,
+            hearted,
+            shared,
+            title,
+            text,
+            username,
+            media,
+            first_name,
+            last_name
+        }
+        this.props.openModal(postData);
+
+    }
     componentWillMount() {
         const au_username=this.props.auth.username;
         const pid=this.props.post.pid.low;
@@ -57,7 +75,7 @@ class Post extends React.Component {
         const {title,text,username,media,first_name,last_name}=this.props.post;
         let name=prettyName(first_name,last_name);
         return(
-                <div className="post-holder" onClick={this.showModal}>
+                <div className="post-holder" onClick={this.handleModal}>
                     <div className="post-right">
                         <div className="user-img-holder">
                             <img src={this.state.profile} alt="usr-img" className="profile-img profile-img-md" />
