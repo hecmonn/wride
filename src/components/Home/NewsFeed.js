@@ -20,7 +20,6 @@ class NewsFeed extends React.Component {
     );
     postsList=(posts)=>(
         <div>
-            {console.log(this.props.openModal)}
             {this.props.posts.map((p,i)=><Post post={p} openModal={this.props.onOpen} key={i} />)}
         </div>
     )

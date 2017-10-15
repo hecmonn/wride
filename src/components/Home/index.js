@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchHomePosts} from '../../actions/posts';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 //components
 import WTF from './WTF';
 import Trends from './Trends';
@@ -37,8 +37,13 @@ class Home extends Component {
                                 <Trends/>
                             </div>
                             <div className="right-pane">
-                                <WriteBox/>
-
+                                <div className="section-holder">
+                                    <ul>
+                                        <li><Link className="selected" to='#'>Home</Link></li>
+                                        <li><Link to='#'>Journal</Link></li>
+                                        <li><Link to='#'>Discover</Link></li>
+                                    </ul>
+                                </div>
                                 <NewsFeed posts={this.props.posts}/>
                             </div>
                         </div>

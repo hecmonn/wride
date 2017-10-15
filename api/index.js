@@ -87,9 +87,40 @@ router.post('/submit-user-reg',(req,res)=>{
     console.log(cql);
 });
 router.post('/submit-post',(req,res)=>{
-    let {body,title,uid}=req.body.data;
-    let cql=`MATCH (a:User) WHERE ID(a)=${uid} CREATE (a)-[r:WROTE]->(b:Post {title:'${title}',body:'${body}',created_date: TIMESTAMP()})`;
-    gquery(cql,res);
+    let {body,title,uid,tags}=req.body.data;
+    let cql=`MATCH (a:User) WHERE ID(a)=${uid} CREATE (a)-[r:WROTE]->(b:Post {title:'${title}',body:'${body}',created_date: TIMESTAMP()}) RETURN ID(b)`;
+    session.run(cql)
+    .then(r=>{
+        let pid=r.records[0]._fields[0].low
+        if(typeof tags !=='undefined'){
+            tags.map(t=>{
+                let cql=`MATCH (t:Tag) WHERE t.label='${t}' RETURN ID(t)`;
+                session.run(cql)
+                .then(r=>{
+                    let tig=0;
+                    if(r.records.length==0){
+                        let cql_tag=`CREATE (t:Tag {label:'${t}'}) RETURN ID(t)`;
+                        session.run(cql_tag)
+                        .then(r=>{
+                            tig=r.records[0]._fields[0].low;
+                            console.log(tig,'non existing')
+                        });
+                    } else {
+                        tig=r.records[0]._fields[0].low;
+                        console.log('-------here')
+                        console.log(tig,'---ex')
+                    }
+                    console.log(tig,'---final')
+                    let cql_post_tag=`MATCH (a:Post),(b:Tag) WHERE ID(a)=${pid} and ID(b)=${tig} CREATE (a)-[r:ABOUT]->(b) RETURN r`;
+                    session.run(cql_post_tag)
+                    .then(r=>{
+                        console.log(r)
+                    })
+                });
+            })
+        }
+        res.json({success:true});
+    });
 });
 
 router.post('/following',(req,res)=>{

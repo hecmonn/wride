@@ -8,7 +8,18 @@
         width: 30%
     .right-pane
         width: 65%
-    .write-box-holder
+        .section-holder
+            font-weight: bold
+            font-size: 1.5em
+            color: $light-grey
+            ul
+                li
+                    display: inline-block
+                    padding: .2em 1em
+                    transition: color .2s ease-out
+                    &:hover, .selected
+                        color: $blackish
+    //.write-box-holder
         display: flex
         width: 100%
         background-color: white

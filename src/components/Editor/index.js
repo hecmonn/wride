@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import EditorM from 'medium-editor';
 import mediumInsert from 'medium-editor-insert-plugin';
+import {BeatLoader} from 'react-spinners';
 import $ from 'jquery';
 import Nav from './Nav';
 import Header from './Header';
@@ -43,16 +44,14 @@ class Editor extends React.Component {
         this.setState({loading:true})
         e.preventDefault();
         const {title,tags}=this.state;
-        console.log(tags);
         let uid=this.props.auth.uid.low;
         let body=document.getElementById('editor-wrid').innerHTML;
-        console.log(title,'----',body,'---',uid)
-        return false;
-        this.props.submitPost({title,body,uid})
+        this.props.submitPost({title,body,uid,tags})
         .then(r=>{
+            console.log(r)
             this.setState({
                 loading:false,
-                redirect:true,
+                //redirect:true,
                 tags: []
             })
         })
@@ -71,11 +70,11 @@ class Editor extends React.Component {
         return (
             !redirect?
             <div>
-                <Nav handleSubmit={this.handleSubmit} handleTag={this.handleTag}/>
+                <Nav handleSubmit={this.handleSubmit} loading={loading} handleTag={this.handleTag}/>
                 <div className="global-holder">
                     <form>
                         <div className="editor-holder">
-                            <Header user={this.user}  />
+                            <Header user={this.user} />
                             <div className="editor-body">
                                 <input type="text" name="title" className="form-input title-input" onChange={this.handleChange} placeholder="Title" />
                                 <div className="editor" id="editor-wrid"></div>

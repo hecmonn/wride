@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import Tags from './Tags';
 import cn from 'classnames';
+import {BeatLoader} from 'react-spinners';
+
 class Nav extends Component {
     constructor(props){
         super(props);
@@ -14,6 +16,7 @@ class Nav extends Component {
     }
     render(){
         const {dropdownHidden}=this.state;
+        const {loading}=this.props;
         return(
             <div className="nav-holder nav-editor-holder light-shadow">
                 <div className="nav-content">
@@ -33,7 +36,7 @@ class Nav extends Component {
                                         <p className="dd-element">Add up to 5 tags, in order for your story to reach more readers</p>
                                         <Tags handleTag={this.props.handleTag} />
                                         <br/>
-                                        <button type="submit" className="btn btn-md inspire-btn dd-element" onClick={this.props.handleSubmit}>Inspire</button>
+                                        <button type="submit" className="btn btn-lg inspire-btn dd-element" onClick={this.props.handleSubmit} disabled={loading}>{loading? <BeatLoader color={'#c4c0c8'} loading={loading} />:'Inspire'}</button>
                                     </div>
                                 </div>
                             </div>
