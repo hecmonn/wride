@@ -1,15 +1,12 @@
 import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import $ from 'jquery';
 import EditorM from 'medium-editor';
 import mediumInsert from 'medium-editor-insert-plugin';
-import {BeatLoader} from 'react-spinners';
-import $ from 'jquery';
 import Nav from './Nav';
 import Header from './Header';
-
 import {prettyName} from '../../helpers/helpers';
-
 import {submitPost} from '../../actions/posts';
 class Editor extends React.Component {
     constructor(){
@@ -27,15 +24,16 @@ class Editor extends React.Component {
         const {body,title}=this.state
     }
     componentDidMount() {
+        window.MediumInsert = mediumInsert.MediumInsert
         const editor=new EditorM('.editor',{
             placeholder:{
                 text:'So, what happened?'
             }
         });
-        //$('.editor').mediumInsert({
-        //    editor,
-        //    enbaled:true
-        //});
+        $('.editor').mediumInsert({
+            editor,
+            enbaled:true
+        });
     }
     handleChange=(e)=>{
         this.setState({[e.target.name]:e.target.value})

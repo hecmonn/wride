@@ -19,7 +19,8 @@ module.exports={
     externals:['ws'],
     resolve:{
         alias:{
-            'jquery-ui':'jquery-ui/ui'
+            'jquery-ui':'jquery-ui/ui',
+            'jquery-sortable':'jquery-ui/ui/widgets/sortable'
         }
     },
     plugins:[
