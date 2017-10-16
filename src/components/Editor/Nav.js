@@ -27,7 +27,7 @@ class Nav extends Component {
                                 <div className="dd-trigger" onClick={this.handleTrigger}>
                                     <span className="dd-trigger-object">
                                         <span className="dd-element">Inspire</span>
-                                        <img className="icon icon-arrow-down dd-element" src="/images/ic_down.svg" />
+                                        <span className="fa fa-chevron-down"></span>
                                     </span>
                             </div>
                                 <div className={cn('dd-content light-shadow',{hide: dropdownHidden})} >

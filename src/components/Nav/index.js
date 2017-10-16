@@ -12,8 +12,8 @@ class Nav extends Component {
                     <div className="upper-nav">
                         <div className="un-cont logo-title"> <Link to="/">Wride.</Link></div>
                         <div className="right-side">
-                            <Link to='/inspire' className="nav-link inspire-link"><span className="link-gradient">inspire</span></Link>
-                            <span className="icon not-icon"></span>
+                            <Link to='/inspire' className="nav-link inspire-link"><span className="link-gradient fa fa-pencil-square-o fa-lg"></span></Link>
+                            <span className="fa fa-bell-o fa-lg"></span>
                             <UserMenu />
                         </div>
                     </div>

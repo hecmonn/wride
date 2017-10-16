@@ -22405,13 +22405,9 @@ var Nav = function (_Component) {
                             _react2.default.createElement(
                                 _reactRouterDom.Link,
                                 { to: '/inspire', className: 'nav-link inspire-link' },
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'link-gradient' },
-                                    'inspire'
-                                )
+                                _react2.default.createElement('span', { className: 'link-gradient fa fa-pencil-square-o fa-lg' })
                             ),
-                            _react2.default.createElement('span', { className: 'icon not-icon' }),
+                            _react2.default.createElement('span', { className: 'fa fa-bell-o fa-lg' }),
                             _react2.default.createElement(_UserMenu2.default, null)
                         )
                     )
@@ -52403,7 +52399,7 @@ var Nav = function (_Component) {
                                             { className: 'dd-element' },
                                             'Inspire'
                                         ),
-                                        _react2.default.createElement('img', { className: 'icon icon-arrow-down dd-element', src: '/images/ic_down.svg' })
+                                        _react2.default.createElement('span', { className: 'fa fa-chevron-down' })
                                     )
                                 ),
                                 _react2.default.createElement(
@@ -54129,7 +54125,7 @@ var UserMenu = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'un-cont profile-img-md profile-img-nav dropdown-holder ' },
-                _react2.default.createElement('img', { className: 'profile-img profile-img-md', src: 'http://oakridge.in/uploads/principal/principal_15267132451878517075.jpg', alt: 'profile-img profile-img-sm ' }),
+                _react2.default.createElement('span', { className: 'fa fa-user fa-lg', 'aria-hidden': 'true' }),
                 _react2.default.createElement(
                     'div',
                     { className: 'dropdown-content light-shadow' },
