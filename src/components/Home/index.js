@@ -37,13 +37,6 @@ class Home extends Component {
                                 <Trends/>
                             </div>
                             <div className="right-pane">
-                                <div className="section-holder">
-                                    <ul>
-                                        <li><Link className="selected" to='#'>Home</Link></li>
-                                        <li><Link to='#'>Journal</Link></li>
-                                        <li><Link to='#'>Discover</Link></li>
-                                    </ul>
-                                </div>
                                 <NewsFeed posts={this.props.posts}/>
                             </div>
                         </div>

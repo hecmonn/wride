@@ -53446,41 +53446,6 @@ var Home = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'right-pane' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'section-holder' },
-                                _react2.default.createElement(
-                                    'ul',
-                                    null,
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            _reactRouterDom.Link,
-                                            { className: 'selected', to: '#' },
-                                            'Home'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            _reactRouterDom.Link,
-                                            { to: '#' },
-                                            'Journal'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'li',
-                                        null,
-                                        _react2.default.createElement(
-                                            _reactRouterDom.Link,
-                                            { to: '#' },
-                                            'Discover'
-                                        )
-                                    )
-                                )
-                            ),
                             _react2.default.createElement(_NewsFeed2.default, { posts: this.props.posts })
                         )
                     )
@@ -54124,8 +54089,12 @@ var UserMenu = function (_React$Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'un-cont profile-img-md profile-img-nav dropdown-holder ' },
-                _react2.default.createElement('span', { className: 'fa fa-user fa-lg', 'aria-hidden': 'true' }),
+                { className: 'un-cont profile-img-md profile-img-nav dropdown-holder' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'user-menu-trigger align-middle' },
+                    _react2.default.createElement('span', { className: 'fa fa-user fa-lg', 'aria-hidden': 'true' })
+                ),
                 _react2.default.createElement(
                     'div',
                     { className: 'dropdown-content light-shadow' },

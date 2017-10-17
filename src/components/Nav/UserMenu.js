@@ -6,8 +6,10 @@ class UserMenu extends React.Component {
     render () {
         const {username,fname,lname}=this.props.auth;
         return(
-            <div className="un-cont profile-img-md profile-img-nav dropdown-holder ">
-                <span className="fa fa-user fa-lg" aria-hidden="true"></span>
+            <div className="un-cont profile-img-md profile-img-nav dropdown-holder">
+                <div className="user-menu-trigger align-middle">
+                    <span className="fa fa-user fa-lg" aria-hidden="true"></span>
+                </div>
                 <div className="dropdown-content light-shadow">
                     <ul>
                         <li>
