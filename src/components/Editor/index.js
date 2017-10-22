@@ -31,8 +31,8 @@ class Editor extends React.Component {
             }
         });
         $('.editor').mediumInsert({
-            editor,
-            enbaled:true
+            editor
+            ,enbaled:true
         });
     }
     handleChange=(e)=>{
@@ -41,6 +41,7 @@ class Editor extends React.Component {
     handleSubmit=(e)=>{
         this.setState({loading:true})
         e.preventDefault();
+        this.edt
         const {title,tags}=this.state;
         let uid=this.props.auth.uid.low;
         let body=document.getElementById('editor-wrid').innerHTML;

@@ -17,9 +17,10 @@ app.use(sassMiddleware({
     outputStyle: 'compressed',
     prefix: '/css'
 }));
-
 app.use(express.static(path.join(__dirname,'public/static')));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb',extended:true}));
+
 app .use('/api',apiRouter);
 app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'public/index.html'));
